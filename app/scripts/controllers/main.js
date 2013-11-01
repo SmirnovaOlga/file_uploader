@@ -7,4 +7,5 @@ angular.module('fileUploaderApp')
       'AngularJS',
       'Karma'
     ];
+    $scope.greeting = {text : "Hello!"};
   });

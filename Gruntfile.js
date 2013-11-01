@@ -274,7 +274,7 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'compass:server',
+     //   'compass:server',
         'copy:styles'
       ],
       test: [

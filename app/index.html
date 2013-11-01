@@ -13,6 +13,8 @@
 
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
         <!-- endbuild -->
 </head>
   <body ng-app="fileUploaderApp">
@@ -23,10 +25,14 @@
     <!--[if lt IE 9]>
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
+      <script src="../bootstrap/js/bootstrap.js"></script>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container" ng-view="" ng-controller="MainCtrl">
+        <input ng-model="greeting.text">
+        <p>{{greeting.text}}</p>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
