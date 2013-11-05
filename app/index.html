@@ -12,7 +12,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/main.scss">
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="../bootstrap/css/bootstrap-responsive.css">
         <!-- endbuild -->
@@ -23,16 +23,75 @@
     <![endif]-->
 
     <!--[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
-      <script src="../bootstrap/js/bootstrap.js"></script>
-    <![endif]-->
+      <!--<script src="bower_components/es5-shim/es5-shim.js"></script>-->
+      <!--<script src="bower_components/json3/lib/json3.min.js"></script>-->
+    <!--[endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view="" ng-controller="MainCtrl">
-        <input ng-model="greeting.text">
-        <p>{{greeting.text}}</p>
+
+    <div id="menu">
+        <ul class="nav nav-list">
+            <li><a href="#">Root</a></li>
+            <li class="folder"><a href="#">Folder 1</a></li>
+            <li class="subfolder"><a href="#">subFolder 1</a></li>
+            <li class="subfolder"><a href="#">subFolder 2</a></li>
+            <li class="subfolder active"><a href="#">subFolder 3</a></li>
+            <li class="folder"><a href="#">Folder 2</a></li>
+        </ul>
     </div>
+    <div id="container">
+        <ul class="breadcrumb">
+            <li><a href="#">Root</a> <span class="divider">/</span></li>
+            <li><a href="#">Folder 1</a> <span class="divider">/</span></li>
+            <li class="active">subFolder 3</li>
+        </ul>
+
+        <div id="edit-menu">
+            <div class="btn-group">
+                <button class="btn"><i class="icon-plus"></i> Add</button>
+                <button class="btn"><i class="icon-edit"></i> Edit</button>
+                <button class="btn"><i class="icon-remove"></i> Remove</button>
+            </div>
+
+            <div class="btn-group pull-right">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Size of icons
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>Large</li>
+                    <li>Medium</li>
+                    <li>Small</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div id="files">
+            <div class="pull-left">
+                <a href="#"><i class="icon-search"></i>
+                    <p>File1</p></a>
+            </div>
+            <div class="pull-left">
+                <a href="#"><i class="icon-map-marker"></i>
+                    <p>File2</p></a>
+            </div>
+            <div class="pull-left">
+                <a href="#"><i class="icon-random"></i>
+                    <p>File3</p></a>
+            </div>
+            <div class="pull-left">
+                <a href="#"><i class="icon-filter"></i>
+                    <p>File4</p></a>
+            </div>
+            <div class="pull-left">
+                <a href="#"><i class="icon-fullscreen"></i>
+                    <p>File5</p></a>
+            </div>
+        </div>
+
+    </div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -45,35 +104,35 @@
        ga('send', 'pageview');
     </script>
 
-    <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/docs/js/jquery.js"></script>
+    <script src="bower_components/angular.js"></script>
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
-        <!-- endbuild -->
+        <!--&lt;!&ndash; build:js scripts/plugins.js &ndash;&gt;-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>-->
+        <!--<script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>-->
+        <!--&lt;!&ndash; endbuild &ndash;&gt;-->
 
         <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers\main.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
         <!-- endbuild -->
 </body>
 </html>
