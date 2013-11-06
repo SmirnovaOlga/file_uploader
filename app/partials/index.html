@@ -1,8 +1,8 @@
     <div id="menu">
         <ul class="nav nav-list">
             <li><a href="#"><i class="icon-folder-close"></i>Root</a></li>
-            <li ng-repeat="tr in trees track by $index">
-                <a ng-href="#{{tr.link}}" ng-show="!$last" class="folder"><i class="icon-folder-close"></i>{{tr.title}}</a>
+            <li ng-repeat="tree in trees track by $index">
+                <a ng-href="#{{tree.link}}" class="folder"><i class="icon-folder-close"></i>{{tree.title}}</a>
             </li>
             <!--<li class="folder"><a href="#/folder 1">Folder 1</a></li>-->
             <!--<li class="subfolder"><a href="#">subFolder 1</a></li>-->
