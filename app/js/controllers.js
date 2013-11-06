@@ -65,38 +65,69 @@ angular.module('fileUploaderApp.controllers', []).
                         ]
                     }
                 ]
-            }
+            },
+			{
+				type: "folder",
+				name: "animals2",
+				path: "/animals2",
+				children: [
+					{
+						type: "folder",
+						name: "cat2",
+						path: "/animals2/cat2"
+					}
+				]
+			}
         ];
 
+		$scope.tree = prepareTree($scope.response);
+		console.log($scope.tree);
 
-        prepareTree($scope.response);
+        function prepareTree(tree) {
 
-        function prepareTree(response) {
             var array = [];
             var element = {};
+			var level = 0;
 
-            for (var i = 0; i < response.length; i++) {
-                element = response[i];
+            for (var i = 0; i < tree.length; i++) {
+
+                element = tree[i];
                 traversalTree(element);
             }
 
-
             function traversalTree(el) {
+
                 if (el.children) {
-                    array.push(el.name);
-                    for (var i = 0; i < el.children.length; i++) {
-                        el = el.children;
-                        traversalTree(el);
-                    }
+
+                    array.push({name: el.name, path: el.path, type: el.type, level: level});
+					level++;
+
+					for (i = 0; i < el.children.length; i++) {
+
+						traversalTree(el.children[i]);
+					}
                 }
                 else {
-                    array.push(el.name);
+
+					if(el.length) {
+
+						for (i = 0; i < el.length; i++) {
+
+							array.push({name: el[i].name, path: el[i].path, type: el.type, level: level});
+						}
+					}
+					else {
+
+						array.push({name: el.name, path: el.path, type: el.type, level: level});
+					}
                 }
             }
 
-           // console.log(array);
+			return array;
+
+           //console.log(array);
         }
 
-    }])
+    }]);
 
 
