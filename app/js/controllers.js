@@ -34,29 +34,69 @@ angular.module('fileUploaderApp.controllers', []).
             }
         }
 
-        $scope.response = {
-            "name": ["folder1", "folder2", "folder3"]
-        }
+        $scope.response = [
+            {
+                type: "folder",
+                name: "animals",
+                path: "/animals",
+                children: [
+                    {
+                        type: "folder",
+                        name: "cat",
+                        path: "/animals/cat",
+                        children: [
+                            {
+                                type: "folder",
+                                name: "images",
+                                path: "/animals/cat/images",
+                                children: [
+                                    {
+                                        type: "file",
+                                        name: "cat001.jpg",
+                                        path: "/animals/cat/images/cat001.jpg"
+                                    },
+                                    {
+                                        type: "file",
+                                        name: "cat002.jpg",
+                                        path: "/animals/cat/images/cat002.jpg"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
 
         prepareTree($scope.response);
 
         function prepareTree(response) {
-            $scope.trees = [];
-            var names = response.name;
-            var link = '';
+            var array = [];
+            var element = {};
 
-
-            for (var i = 0; i < names.length; i++) {
-                link += '/' + names[i];
-
-                var obj = {
-                    title: names[i],
-                    link: link
-                };
-                $scope.trees.push(obj);
+            for (var i = 0; i < response.length; i++) {
+                element = response[i];
+                traversalTree(element);
             }
 
+
+            function traversalTree(el) {
+                if (el.children) {
+                    array.push(el.name);
+                    for (var i = 0; i < el.children.length; i++) {
+                        el = el.children;
+                        traversalTree(el);
+                    }
+                }
+                else {
+                    array.push(el.name);
+                }
+            }
+
+           // console.log(array);
         }
 
+    }])
 
-    }]);
+
