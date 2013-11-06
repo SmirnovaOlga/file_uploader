@@ -33,4 +33,35 @@ angular.module('fileUploaderApp.controllers', []).
 				$scope.breadcrumbs.push(obj);
 			}
 		}
+
+        $scope.response = {
+        "name": ["folder1", "folder2", "folder3"]
+        }
+
+        prepareTree($scope.response);
+
+        function prepareTree(response) {
+            var response = response;
+            $scope.trees = [];
+            var names = response.name;
+            var link = '';
+
+
+            for(var i = 0; i < names.length; i++) {
+                link += '/' + names[i];
+
+                var obj = {
+                    title: names[i],
+                    link: link
+                };
+                var array = $scope.trees.push(obj);
+            }
+
+            $scope.trees.push(obj);
+
+        }
+
+
+
+
   }]);

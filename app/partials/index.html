@@ -1,11 +1,14 @@
     <div id="menu">
         <ul class="nav nav-list">
             <li><a href="#">Root</a></li>
-            <li class="folder"><a href="#">Folder 1</a></li>
-            <li class="subfolder"><a href="#">subFolder 1</a></li>
-            <li class="subfolder"><a href="#">subFolder 2</a></li>
-            <li class="subfolder active"><a href="#">subFolder 3</a></li>
-            <li class="folder"><a href="#">Folder 2</a></li>
+            <li ng-repeat="tr in trees track by $index">
+                <a ng-href="#{{tr.link}}" ng-show="!$last">{{tr.title}}</a>
+            </li>
+            <!--<li class="folder"><a href="#/folder 1">Folder 1</a></li>-->
+            <!--<li class="subfolder"><a href="#">subFolder 1</a></li>-->
+            <!--<li class="subfolder"><a href="#">subFolder 2</a></li>-->
+            <!--<li class="subfolder active"><a href="#">subFolder 3</a></li>-->
+            <!--<li class="folder"><a href="#">Folder 2</a></li>-->
         </ul>
     </div>
     <div id="container">
@@ -18,7 +21,7 @@
 
         <div id="edit-menu">
             <div class="btn-group">
-                <a href='#/add'><button class="btn"><i class="icon-plus"></i> Add </button></a>
+                <a href='#'><button class="btn"><i class="icon-plus"></i> Add </button></a>
                 <button class="btn"><i class="icon-edit"></i> Edit </button>
                 <button class="btn"><i class="icon-remove"></i> Remove </button>
             </div>
