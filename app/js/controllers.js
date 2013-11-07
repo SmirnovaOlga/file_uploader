@@ -48,19 +48,12 @@ angular.module('fileUploaderApp.controllers', []).
                             {
                                 type: "folder",
                                 name: "images",
-                                path: "/animals/cat/images",
-                                children: [
-                                    {
-                                        type: "file",
-                                        name: "cat001.jpg",
-                                        path: "/animals/cat/images/cat001.jpg"
-                                    },
-                                    {
-                                        type: "file",
-                                        name: "cat002.jpg",
-                                        path: "/animals/cat/images/cat002.jpg"
-                                    }
-                                ]
+                                path: "/animals/cat/images"
+                            },
+                            {
+                                type: "folder",
+                                name: "images2",
+                                path: "/animals/cat/images2"
                             }
                         ]
                     }
@@ -81,16 +74,15 @@ angular.module('fileUploaderApp.controllers', []).
         ];
 
 		$scope.tree = prepareTree($scope.response);
-		console.log($scope.tree);
 
         function prepareTree(tree) {
 
             var array = [];
             var element = {};
-			var level = 0;
+            var len = tree.length;
 
-            for (var i = 0; i < tree.length; i++) {
-
+            for (var i = 0; i < len; i++) {
+                var level = 0;
                 element = tree[i];
                 traversalTree(element);
             }
@@ -100,32 +92,39 @@ angular.module('fileUploaderApp.controllers', []).
                 if (el.children) {
 
                     array.push({name: el.name, path: el.path, type: el.type, level: level});
-					level++;
 
-					for (i = 0; i < el.children.length; i++) {
+                        level++;
 
-						traversalTree(el.children[i]);
+
+					for (var j = 0; j < el.children.length; j++) {
+                        if(j > 0)
+                        {
+                            level--;
+                        }
+                        traversalTree(el.children[j]);
+
 					}
+
                 }
                 else {
 
 					if(el.length) {
 
-						for (i = 0; i < el.length; i++) {
-
-							array.push({name: el[i].name, path: el[i].path, type: el.type, level: level});
+						for (var k = 0; k < el.length; k++) {
+							array.push({name: el[k].name, path: el[k].path, type: el.type, level: level});
 						}
 					}
 					else {
 
 						array.push({name: el.name, path: el.path, type: el.type, level: level});
+
 					}
                 }
             }
+            console.log(array);
 
 			return array;
 
-           //console.log(array);
         }
 
     }]);
