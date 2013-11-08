@@ -1,5 +1,5 @@
-    <div id="menu">
-        <ul class="nav nav-list">
+    <div id="menu" class="container-fluid">
+        <ul class="nav nav-list row-fluid">
             <li><a href="#"><i class="icon-folder-close"></i>Root</a></li>
             <li ng-repeat="obj in tree track by $index">
                 <a ng-href="#{{obj.path}}" style="margin-left: {{ obj.level * 20 }}px;">
@@ -43,25 +43,9 @@
         </div>
 
         <div id="files">
-            <div class="pull-left">
-                <a href="#"><i class="icon-search"></i>
-                    <p>File1</p></a>
-            </div>
-            <div class="pull-left">
-                <a href="#"><i class="icon-map-marker"></i>
-                    <p>File2</p></a>
-            </div>
-            <div class="pull-left">
-                <a href="#"><i class="icon-random"></i>
-                    <p>File3</p></a>
-            </div>
-            <div class="pull-left">
-                <a href="#"><i class="icon-filter"></i>
-                    <p>File4</p></a>
-            </div>
-            <div class="pull-left">
-                <a href="#"><i class="icon-fullscreen"></i>
-                    <p>File5</p></a>
+            <div ng-repeat="file in files | " class="pull-left" style="margin-right: 20px;">
+                <a ng-href="#{{file.path}}"><i class="icon-file"></i>
+                    <p>{{file.name}}</p></a>
             </div>
         </div>
 
