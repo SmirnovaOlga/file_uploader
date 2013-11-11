@@ -2,7 +2,7 @@
         <ul class="nav nav-list row-fluid">
             <li><a href="#"><i class="icon-folder-close"></i>Root</a></li>
             <li ng-repeat="obj in tree track by $index">
-                <a ng-href="#{{obj.path}}" style="margin-left: {{ obj.level * 20 }}px;">
+                <a ng-href="#{{obj.path}}" style="margin-left: {{ obj.level * 20 }}px;" ><!--ng-click="getFile()"-->
 					<i class="icon-folder-close"></i>{{obj.name}}
 				</a>
             </li>
@@ -43,8 +43,8 @@
         </div>
 
         <div id="files">
-            <div ng-repeat="file in files | " class="pull-left" style="margin-right: 20px;">
-                <a ng-href="#{{file.path}}"><i class="icon-file"></i>
+            <div ng-repeat="file in files" class="pull-left" style="margin-right: 20px;">
+                <a id="item-file" ng-href="#{{file.path}}" ng-click="selectFile()"><i class="icon-file"></i>
                     <p>{{file.name}}</p></a>
             </div>
         </div>

@@ -6,6 +6,7 @@ angular.module('fileUploaderApp.controllers', []).
     controller('IndexCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
 
         $scope.path = '/';
+        $scope.toggle = false;
 
         if ($routeParams.path) {
 
@@ -97,12 +98,40 @@ angular.module('fileUploaderApp.controllers', []).
             }
         ];
 
+        $scope.response_files = [
+            {
+                type: "file",
+                name: "cat003.jpg",
+                path: "/animals/cat/images2/cat003.jpg"
+            },
+            {
+                type: "file",
+                name: "cat004.jpg",
+                path: "/animals/cat/images2/cat004.jpg"
+            }
+        ];
+
         $scope.tree = prepareTree($scope.response);
+        $scope.files = getFile($scope.response_files);
+
+       function getFile(data){
+           //$http.get('server').success(function(data){
+           //         $scope.data = $scope.response_files;
+           //     }
+           // );
+            var response_files = data;
+            var files = [];
+
+            for (var i=0; i < response_files.length; i++)
+            {
+                files.push({name: $scope.response_files[i].name, path: $scope.response_files[i].path});
+            }
+            return files;
+        }
 
         function prepareTree(tree) {
 
             var array = [];
-            $scope.files = [];
             var element = {};
             var len = tree.length;
             var parent = {};
@@ -123,9 +152,6 @@ angular.module('fileUploaderApp.controllers', []).
                     for (var j = 0; j < el.children.length; j++) {
                         if (el.children[j].type != "file")
                             traversalTree(el.children[j]);
-                        else {
-                            $scope.files.push({name: el.children[j].name, path: el.children[j].path, type: el.children[j].type, parent_path: el.path});
-                        }
                     }
 
                 }
@@ -147,6 +173,10 @@ angular.module('fileUploaderApp.controllers', []).
 
         }
 
+        $scope.selectFile = function(){
+          // $("#item-file").addClass("selected");
+            alert('h');
+        }
     }]);
 
 
