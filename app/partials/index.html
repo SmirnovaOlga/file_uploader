@@ -23,9 +23,9 @@
 
         <div id="edit-menu">
             <div class="btn-group">
-                <a href='#'><button class="btn"><i class="icon-plus"></i> Add </button></a>
-                <button class="btn"><i class="icon-edit"></i> Edit </button>
-                <button class="btn"><i class="icon-remove"></i> Remove </button>
+                <a href='#'><a class="btn"><i class="icon-plus"></i> Add </a></a>
+                <a class="btn"><i class="icon-edit"></i> Edit </a>
+                <a class="btn" ng-click="remove()"><i class="icon-remove"></i> Remove </a>
             </div>
 
             <div class="btn-group pull-right">
@@ -43,9 +43,9 @@
         </div>
 
         <div id="files">
-            <div ng-repeat="file in files" class="pull-left" style="margin-right: 20px;">
-                <a id="item-file" ng-href="#{{file.path}}" ng-click="selectFile()"><i class="icon-file"></i>
-                    <p>{{file.name}}</p></a>
+           <div ng-repeat="file in files" class="pull-left" style="margin-right: 20px;">
+               <span id="item-file" ng-click="selectFile($index)" ng-dblclick="openFile($index)">
+                <p>{{file.name}}</p></span>
             </div>
         </div>
 
