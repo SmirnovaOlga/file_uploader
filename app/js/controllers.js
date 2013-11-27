@@ -3,10 +3,16 @@
 /* Controllers */
 
 angular.module('fileUploaderApp.controllers', []).
-    controller('IndexCtrl', ['$scope', '$routeParams', '$location', function ($scope, $routeParams, $location) {
+    controller('IndexCtrl', ['$scope', '$routeParams', '$location', '$window', function ($scope, $routeParams, $location, $window) {
 
         $scope.path = '/';
         $scope.toggle = false;
+
+        $scope.items = [
+            "Small",
+            "Medium",
+            "Large"
+        ];
 
         if ($routeParams.path) {
 
@@ -63,23 +69,6 @@ angular.module('fileUploaderApp.controllers', []).
                                         path: "/animals/cat/images/cat002.jpg"
                                     }
                                 ]
-                            },
-                            {
-                                type: "folder",
-                                name: "images2",
-                                path: "/animals/cat/images2",
-                                children: [
-                                    {
-                                        type: "file",
-                                        name: "cat003.jpg",
-                                        path: "/animals/cat/images2/cat003.jpg"
-                                    },
-                                    {
-                                        type: "file",
-                                        name: "cat004.jpg",
-                                        path: "/animals/cat/images2/cat004.jpg"
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -103,23 +92,23 @@ angular.module('fileUploaderApp.controllers', []).
             {
                 type: "file",
                 name: "text",
-                path: "file:///C:/Users/Public/Pictures/Sample%20Pictures/text.txt"
+                path: "C:/Users/Public/Pictures/Sample%20Pictures/text.txt"
             },
             {
                 type: "file",
                 name: "penguins",
-                path: "file:///C:/Users/Public/Pictures/Sample%20Pictures/Penguins.jpg"
+                path: "C:/Users/Public/Pictures/Sample%20Pictures/Penguins.jpg"
             },
             {
                 type: "file",
                 name: "tulips",
-                path: "file:///C:/Users/Public/Pictures/Sample%20Pictures/Tulips.jpg",
+                path: "C:/Users/Public/Pictures/Sample%20Pictures/Tulips.jpg",
                 image: "../img/glyphicons-halflings.png"
             },
             {
                 type: "file",
                 name: "excel",
-                path: "file:///C:/Users/Public/Pictures/Sample%20Pictures/excel.xlsx"
+                path: "C:/Users/Public/Pictures/Sample%20Pictures/excel.xlsx"
             }
         ];
 
@@ -191,16 +180,18 @@ angular.module('fileUploaderApp.controllers', []).
         }
 
         $scope.openFile = function(index) {
-            console.log($scope.files[index].path);
-            $location.path($scope.files[index].path);
+            $window.location.href = $scope.files[index].path;
         }
 
         $scope.remove = function(){
             console.log($scope.selectindex);
             console.log( $scope.files[$scope.selectindex]);
-            $scope.files[$scope.selectindex] = {};
+            delete $scope.files[$scope.selectindex];
 
         }
-    }]);
+
+
+}]);
+
 
 

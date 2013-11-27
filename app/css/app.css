@@ -49,15 +49,6 @@ body {
   border-top: 2px solid #333333;
 }
 
-
-.dropdown-menu {
-  background: url(image/down_arrow.png) no-repeat,
-  linear-gradient(to top, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0));
-  background-position: 100% 50%;
-  height: 30px;
-
-}
-
 .size-list li {
   border: 1px solid #333333;
 }
@@ -82,5 +73,10 @@ body {
 }
 
 .selected {
-    border: 2px solid #333333;
+    color: red;
+}
+
+#item-file:hover {
+    cursor: pointer;
+    color: red;
 }
