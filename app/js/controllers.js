@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('fileUploaderApp.controllers', []).
-    controller('IndexCtrl', ['$scope', '$routeParams', '$location', '$window', function ($scope, $routeParams, $location, $window) {
+    controller('IndexCtrl', ['$scope', '$routeParams', '$location', '$window', '$http', function ($scope, $routeParams, $location, $window, $http) {
 
         $scope.path = '/';
         $scope.toggle = false;
@@ -191,7 +191,9 @@ angular.module('fileUploaderApp.controllers', []).
         }
 
 
-}]);
+}])
+
+
 
 
 
