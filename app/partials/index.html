@@ -30,14 +30,6 @@
                     <span>Add files...</span>
                     <input type="file" name="files[]" multiple ng-disabled="disabled">
                 </span>
-                        <button type="button" class="btn btn-primary start" data-ng-click="submit()">
-                            <i class="glyphicon glyphicon-upload"></i>
-                            <span>Start upload</span>
-                        </button>
-                        <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
-                            <i class="glyphicon glyphicon-ban-circle"></i>
-                            <span>Cancel upload</span>
-                        </button>
                         <!-- The global file processing state -->
                         <span class="fileupload-process"></span>
                     </div>
@@ -77,7 +69,8 @@
                                 <i class="glyphicon glyphicon-upload"></i>
                                 <span>Start</span>
                             </button>
-                            <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
+                            <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()"
+                                    data-ng-hide="!file.$cancel">
                                 <i class="glyphicon glyphicon-ban-circle"></i>
                                 <span>Cancel</span>
                             </button>
@@ -88,9 +81,15 @@
                         </td>
                     </tr>
                 </table>
+                <button type="button" class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Edit</span>
+                </button>
+                <button type="button" class="btn btn-danger destroy" data-ng-click="remove()">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
             </form>
-            <a class="btn"><i class="icon-edit"></i> Edit </a>
-            <a class="btn" ng-click="remove()"><i class="icon-remove"></i> Remove </a>
         </div>
 
         <div class="dropdown pull-right" ng-click="class='open'" ng-class="class">
@@ -109,7 +108,7 @@
 
     <div id="files">
         <div ng-repeat="file in files track by $index" class="pull-left" style="margin-right: 20px;">
-            <span id="item-file" ng-click="selectFile($index); class='selected' " ng-dblclick="openFile($index)"
+            <span id="item-file" ng-click="selectFile($index+1); class='selected' " ng-dblclick="openFile($index)"
                   ng-class="class">{{file.name}}</span>
         </div>
     </div>

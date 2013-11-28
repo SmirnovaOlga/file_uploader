@@ -7,6 +7,7 @@ angular.module('fileUploaderApp.controllers', []).
 
         $scope.path = '/';
         $scope.toggle = false;
+        $scope.selectindex = [];
 
         $scope.items = [
             "Small",
@@ -175,7 +176,8 @@ angular.module('fileUploaderApp.controllers', []).
         }
 
         $scope.selectFile = function(index){
-            $scope.selectindex = index;
+            if($scope.selectindex != index)
+            $scope.selectindex.push(index);
             console.log($scope.selectindex);
         }
 
@@ -185,8 +187,8 @@ angular.module('fileUploaderApp.controllers', []).
 
         $scope.remove = function(){
             console.log($scope.selectindex);
-            console.log( $scope.files[$scope.selectindex]);
-            delete $scope.files[$scope.selectindex];
+            for(var i = 0; i < $scope.selectindex.length; i++)
+            delete $scope.files[$scope.selectindex[i]-1];
 
         }
 
