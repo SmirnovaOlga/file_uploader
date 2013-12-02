@@ -5,6 +5,12 @@
 angular.module('fileUploaderApp.controllers', []).
     controller('IndexCtrl', ['$scope', '$routeParams', '$location', '$window', '$http', function ($scope, $routeParams, $location, $window, $http) {
 
+        $http.get('/file_uploader/server/php/folderhandler.php').success(function (data) {
+                console.log(data);
+                $scope.response = data;
+            }
+        );
+
         $scope.path = '/';
         $scope.toggle = false;
         $scope.selectindex = [];
@@ -42,95 +48,6 @@ angular.module('fileUploaderApp.controllers', []).
             }
         }
 
-        $scope.response = [
-            {
-                type: "folder",
-                name: "animals",
-                path: "/animals",
-                children: [
-                    {
-                        type: "folder",
-                        name: "cat",
-                        path: "/animals/cat",
-                        children: [
-                            {
-                                type: "folder",
-                                name: "images",
-                                path: "/animals/cat/images",
-                                children: [
-                                    {
-                                        type: "file",
-                                        name: "cat001.jpg",
-                                        path: "/animals/cat/images/cat001.jpg",
-                                        image: "../img/glyphicons-halflings.png"
-                                    },
-                                    {
-                                        type: "file",
-                                        name: "cat002.jpg",
-                                        path: "/animals/cat/images/cat002.jpg"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                type: "folder",
-                name: "animals2",
-                path: "/animals2",
-                children: [
-                    {
-                        type: "folder",
-                        name: "cat2",
-                        path: "/animals2/cat2"
-                    }
-                ]
-            }
-        ];
-
-        $scope.response_files = [
-            {
-                type: "file",
-                name: "text",
-                path: "C:/Users/Public/Pictures/Sample%20Pictures/text.txt"
-            },
-            {
-                type: "file",
-                name: "penguins",
-                path: "C:/Users/Public/Pictures/Sample%20Pictures/Penguins.jpg"
-            },
-            {
-                type: "file",
-                name: "tulips",
-                path: "C:/Users/Public/Pictures/Sample%20Pictures/Tulips.jpg",
-                image: "../img/glyphicons-halflings.png"
-            },
-            {
-                type: "file",
-                name: "excel",
-                path: "C:/Users/Public/Pictures/Sample%20Pictures/excel.xlsx"
-            }
-        ];
-
-        $scope.tree = prepareTree($scope.response);
-        $scope.files = getFile($scope.response_files);
-
-       function getFile(data){
-           //$http.get('server').success(function(data){
-           //         $scope.data = $scope.response_files;
-           //     }
-           // );
-            var response_files = data;
-            var files = [];
-
-            for (var i=0; i < response_files.length; i++)
-            {
-                files.push({name: $scope.response_files[i].name, path: $scope.response_files[i].path, image: $scope.response_files[i].image});
-            }
-            return files;
-        }
-
         function prepareTree(tree) {
 
             var array = [];
@@ -159,7 +76,7 @@ angular.module('fileUploaderApp.controllers', []).
                 }
                 else {
 
-                    if(el.length) {
+                    if (el.length) {
 
                         for (var k = 0; k < el.length; k++) {
                             array.push({name: el[k].name, path: el[k].path, type: el.type, level: level});
@@ -172,28 +89,40 @@ angular.module('fileUploaderApp.controllers', []).
             }
 
             return array;
-
         }
 
-        $scope.selectFile = function(index){
-            if($scope.selectindex != index)
-            $scope.selectindex.push(index);
+        $scope.tree = prepareTree($scope.response);
+
+        function getFile() {
+            $http.get('/file_uploader/server/php/filehandler.php').success(function (data) {
+                    $scope.response_files = data;
+                }
+            );
+            $scope.files = [];
+
+            for (var i = 0; i < $scope.response_files.length; i++) {
+                $scope.files.push({name: $scope.response_files[i].name, path: $scope.response_files[i].path, image: $scope.response_files[i].image});
+            }
+            return $scope.files;
+        }
+
+        $scope.selectFile = function (index) {
+            if ($scope.selectindex != index)
+                $scope.selectindex.push(index);
             console.log($scope.selectindex);
-        }
+        };
 
-        $scope.openFile = function(index) {
+        $scope.openFile = function (index) {
             $window.location.href = $scope.files[index].path;
-        }
+        };
 
-        $scope.remove = function(){
+        $scope.remove = function () {
             console.log($scope.selectindex);
-            for(var i = 0; i < $scope.selectindex.length; i++)
-            delete $scope.files[$scope.selectindex[i]-1];
+            for (var i = 0; i < $scope.selectindex.length; i++)
+                delete $scope.files[$scope.selectindex[i] - 1];
 
-        }
-
-
-}])
+        };
+    }])
 
 
 
