@@ -6,11 +6,11 @@
  * Time: 16:51
  * To change this template use File | Settings | File Templates.
  */
-$arr = $arr = array(
-    "1" => array("type" => "file",
+$arr = array(
+    array("type" => "file",
                  "name" => "desert",
                  "path" => "/file_uploader/server/php/files/animals/cat/Desert.jpg"),
-    "2" => array("type" => "file",
+    array("type" => "file",
                  "name" => "penguins",
                  "path" => "/file_uploader/server/php/files/animals/cat/Penguins.jpg")
 );

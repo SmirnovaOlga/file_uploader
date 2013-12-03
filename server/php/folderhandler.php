@@ -8,20 +8,24 @@
  */
 
 $arr = array(
-    "type" => "folder",
+    array("type" => "folder",
     "name" => "animals",
-    "path" => "/file_uploader/server/php/files/animals",
-    "children" => array(
+    "path" => "/animals",
+    "children" => array(array(
         "type" => "folder",
         "name" => "cat",
-        "path" => "/file_uploader/server/php/files/animals/cat",
-        "children" => array(
-            "type" => "file",
-            "name" => "Desert.jpg",
-            "path" => "/file_uploader/server/php/files/animals/cat/Desert.jpg"
-        )
-    )
+        "path" => "/animals/cat",
+        "children" => array(array(
+            "type" => "folder",
+            "name" => "kitten",
+            "path" => "/animals/cat/kitten"
+        ))
+    ))
+    ),
+    array("type" => "folder",
+        "name" => "birds",
+        "path" => "/birds")
 );
-$array = json_encode($arr);
+$array = json_encode ( $arr);
 echo $array;
 exit;
