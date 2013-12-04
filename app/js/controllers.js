@@ -88,17 +88,16 @@ angular.module('fileUploaderApp.controllers', []).
             return array;
         }
 
-        function getFile() {
-            $http.get('/file_uploader/server/php/filehandler.php').success(function (data) {
+        $scope.getFile = function () {
+            $scope.files = [];
+            $http.get('/file_uploader/server/php/filehandler.php').success(function(data) {
                     $scope.response_files = data;
+                    console.log($scope.response_files);
+                    for (var i = 0; i < $scope.response_files.length; i++) {
+                        $scope.files.push({name: $scope.response_files[i].name, path: $scope.response_files[i].path, image: $scope.response_files[i].image});
+                    }
                 }
             );
-            console.log($scope.response_files);
-            $scope.files = [];
-
-            for (var i = 0; i < $scope.response_files.length; i++) {
-                $scope.files.push({name: $scope.response_files[i].name, path: $scope.response_files[i].path, image: $scope.response_files[i].image});
-            }
             return $scope.files;
         }
 
@@ -110,6 +109,11 @@ angular.module('fileUploaderApp.controllers', []).
 
         $scope.openFile = function (index) {
             $window.location.href = $scope.files[index].path;
+        };
+
+        $scope.editFile = function () {
+            console.log($scope.files[$scope.selectindex]);
+            $window.location.href = $scope.files[$scope.selectindex[0]].path;
         };
 
         $scope.remove = function () {

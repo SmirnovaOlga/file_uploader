@@ -2,7 +2,7 @@
     <ul class="nav nav-list row-fluid">
         <li><a href="#"><i class="icon-folder-close"></i>Root</a></li>
         <li ng-repeat="obj in tree track by $index">
-            <a ng-href="#{{obj.path}}" style="margin-left: {{ obj.level * 20 }}px;" ng-click="getFile()">
+            <a data-ng-click="getFile()" ng-href="#{{obj.path}}" style="margin-left: {{ obj.level * 20 }}px;">
                 <i class="icon-folder-close"></i>{{obj.name}}
             </a>
         </li>
@@ -94,7 +94,7 @@
 	</form>
 
 	<div id="edit-menu">
-        <button type="button" class="btn btn-warning cancel">
+        <button type="button" class="btn btn-warning cancel" ng-click="editFile()">
             <i class="glyphicon glyphicon-ban-circle"></i>
             <span>Edit</span>
         </button>

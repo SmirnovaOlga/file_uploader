@@ -7,6 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+
 $arr = array(
     array("type" => "folder",
     "name" => "animals",
@@ -29,3 +30,4 @@ $arr = array(
 $array = json_encode ( $arr);
 echo $array;
 exit;
+
