@@ -9,11 +9,7 @@
     </ul>
 </div>
 <div id="container">
-    <ul class="breadcrumb">
-        <li ng-repeat="breadcrumb in breadcrumbs">
-            <a ng-href="#{{ breadcrumb.link }}">{{ breadcrumb.title }}</a>
-        </li>
-    </ul>
+    <span breadcrumbs></span>
 
 	<form id="fileupload" action="/file_uploader/server/php/upload.php" method="POST" enctype="multipart/form-data"
 		  data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
@@ -23,7 +19,7 @@
 		<div class="row fileupload-buttonbar">
 			<div class="col-lg-7">
 				<!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}" style="margin-left: 10px;">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>Add files...</span>
                     <input type="file" name="files[]" multiple ng-disabled="disabled">
@@ -115,7 +111,7 @@
     </div>
 
     <div id="files">
-        <div ng-repeat="file in files track by $index" class="pull-left" style="margin-right: 20px;">
+        <div ng-repeat="file in files track by $index" class="pull-left file">
             <span id="item-file" ng-click="selectFile($index+1); class='selected' " ng-dblclick="openFile($index)"
                   ng-class="class">{{file.name}}</span>
         </div>

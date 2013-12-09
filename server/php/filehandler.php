@@ -21,6 +21,8 @@
 //$array = json_encode($arr);
 //echo $array;
 //exit;
+
+
 GetFile();
 
 function GetFile(){
@@ -35,10 +37,10 @@ function GetFile(){
     return json_encode($list_files);
 }
 
-
 Function GetFilesArr($dir)
 {
     $ListDir = array();
+    $list = array();
 
     if ($handle = opendir($dir))
     {
@@ -52,15 +54,28 @@ Function GetFilesArr($dir)
             If(is_file($path))
             {
                 $ListDir[] = $path;
+                array_push($list, $ListDir);
+
             }
             ElseIf(is_dir($path))
             {
                 $ListDir= array_merge($ListDir, GetFilesArr($path));
             }
         }
-
+        var_dump($list);
         closedir($handle);
 
         return $ListDir;
     }
 }
+
+//$filelist = array();
+//if ($handle = opendir("./files")) {
+//    while ($entry = readdir($handle)) {
+//        if (is_file($entry)) {
+//            $filelist[] = $entry;
+//        }
+//    }
+//    var_dump($filelist);
+//    closedir($handle);
+//}
